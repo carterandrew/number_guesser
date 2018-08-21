@@ -111,3 +111,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Snapcraft
+.snapcraft/
+*.bz2
+*.snap

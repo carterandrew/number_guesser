@@ -1,0 +1,25 @@
+name: number-guesser
+version: 'git'
+summary: Simple gRPC-based number guessing game.
+description: |
+  This is a number guessing game based on gRPC. It's mainly intended as a
+  demonstration of gRPC and to test out Snapcraft.
+
+grade: devel
+confinement: devmode
+
+parts:
+  reqs:
+    plugin: python
+    python-version: python2
+    requirements: requirements.txt
+    source: .
+
+apps:
+  rpcserver:
+    command: python rpcserver.py
+    plugs: [network]
+  client:
+    command: python client.py
+    plugs: [network]
+
