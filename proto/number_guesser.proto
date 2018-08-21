@@ -1,0 +1,43 @@
+// Defines a simple gRPC service for a number guessing game.
+
+syntax = "proto3";
+
+enum Difficulty {
+  DIFFICULTY_UNSPECIFIED = 0;
+  DIFFICULTY_EASY = 1;
+  DIFFICULTY_MEDIUM = 2;
+  DIFFICULTY_HARD = 3;
+}
+
+enum GuessResult {
+  RESULT_UNSPECIFIED = 0;
+  RESULT_LOW = 1;
+  RESULT_HIGH = 2;
+  RESULT_CORRECT = 3;
+}
+
+message StartGameRequest {
+  Difficulty difficulty = 1;
+}
+
+message StartGameResponse {
+  string game_id = 1;
+  uint32 lower = 2;
+  uint32 upper = 3;
+}
+
+message GuessRequest {
+  string game_id = 1;
+  uint32 guess = 2;
+}
+
+message GuessResponse {
+  GuessResult result = 1;
+}
+
+service NumberGuesser {
+  rpc StartGame (StartGameRequest) returns (StartGameResponse);
+  
+  rpc Guess (GuessRequest) returns (GuessResponse);
+}
+
